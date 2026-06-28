@@ -47,7 +47,9 @@ export default function VariablesLesson() {
                 <LessonChallenge
                   key={index}
                   question={challengeBlock.question}
+                  code={challengeBlock.code}
                   options={challengeBlock.options}
+                  answer={challengeBlock.answer}
                 />
               );
             }
