@@ -1,5 +1,5 @@
 "use client";
-
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
@@ -27,8 +27,11 @@ export default function Sidebar() {
     const pathname = usePathname();
     const { user } = useUser();
   return (
-    <aside className="w-72 shrink-0 border-r border-white/10 bg-white/5 p-6 backdrop-blur-xl flex flex-col justify-between">
-
+    <motion.aside
+      initial={{ x: -40, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+    >
       <div>
         <div className="mb-10">
           <div className="flex items-center gap-3">
@@ -38,7 +41,7 @@ export default function Sidebar() {
   </div>
 
   <div>
-    <h1 className="text-2xl font-black text-white">
+    <h1 className="text-2xl font-black">
       AIVerse
     </h1>
 
@@ -64,12 +67,15 @@ export default function Sidebar() {
                     ${
                     pathname === link.href
                       ? "bg-cyan-500/20 border border-cyan-500/30 text-cyan-400 shadow-lg shadow-cyan-500/10"
-                      : "text-gray-300 hover:bg-white/10 hover:text-white"
+                      : "text-gray-300 hover:bg-white/10 hover:text-white hover:translate-x-2"
                   }
                 `}
               >
+                {pathname === link.href && (
+                  <div className="h-2 w-2 rounded-full bg-cyan-400"></div>
+                )}
                 <Icon size={20} />
-                {link.name}
+                <span>{link.name}</span>
               </Link>
             );
           })}
@@ -96,6 +102,6 @@ export default function Sidebar() {
             },
           }} />
       </div>
-    </aside>
+    </motion.aside>
   );
 }
