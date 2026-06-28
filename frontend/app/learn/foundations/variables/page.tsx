@@ -3,7 +3,7 @@ import LessonContent from "@/components/lesson/LessonContent";
 import LessonCode from "@/components/lesson/LessonCode";
 import LessonChallenge from "@/components/lesson/LessonChallenge";
 import LessonNavigation from "@/components/lesson/LessonNavigation";
-
+import { TextBlock, CodeBlock, ChallengeBlock, } from "@/types/lesson";
 import { lessons } from "@/data/lessons";
 
 export default function VariablesLesson() {
@@ -22,32 +22,35 @@ export default function VariablesLesson() {
         {lesson.content.map((block, index) => {
           switch (block.type) {
             case "text":
-            case "tip":
+            case "tip":{
+                const textBlock = block as TextBlock;
               return (
                 <LessonContent
                   key={index}
-                  title={block.title}
-                  body={block.body}
+                  title={textBlock.title}
+                  body={textBlock.body}
                 />
               );
-
-            case "code":
+            }
+            case "code":{
+                const codeBlock = block as CodeBlock;
               return (
                 <LessonCode
                   key={index}
-                  code={block.code}
+                  code={codeBlock.code}
                 />
               );
-
-            case "challenge":
+            }
+            case "challenge":{
+                const challengeBlock = block as ChallengeBlock;
               return (
                 <LessonChallenge
                   key={index}
-                  question={block.question}
-                  options={block.options}
+                  question={challengeBlock.question}
+                  options={challengeBlock.options}
                 />
               );
-
+            }
             default:
               return null;
           }

@@ -1,4 +1,7 @@
-export const lessons = {
+import { Lesson } from "@/types/lesson";
+export const lessons: {
+    foundations: Lesson[];
+} = {
   foundations: [
     {
       id: 1,
