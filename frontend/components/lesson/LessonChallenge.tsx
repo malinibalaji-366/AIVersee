@@ -1,8 +1,8 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Button from "@/components/ui/Button";
-
+import { useProgressStore } from "@/lib/progressStore"
 type Props = {
   question: string;
   code: string;
@@ -18,9 +18,14 @@ export default function LessonChallenge({
 }: Props) {
   const [selected, setSelected] = useState("");
   const [checked, setChecked] = useState(false);
-
+  const router =useRouter();
   const correct = selected === answer;
-
+  const addSparks = useProgressStore((state) => state.addSparks);
+  
+  const completedLessons = useProgressStore(
+    (state) => state.completedLessons
+  );
+  const alreadyCompleted = completedLessons.includes("variables");
   return (
     <section className="mb-10 rounded-3xl border border-yellow-500/20 bg-yellow-500/5 p-8">
 
@@ -70,7 +75,13 @@ export default function LessonChallenge({
         <Button
           className="mt-6"
           disabled={!selected}
-          onClick={() => setChecked(true)}
+          onClick={() => {
+            setChecked(true);
+            if (selected === answer && !alreadyCompleted)  {
+                addSparks(30);
+                console.log("Current sparks:", useProgressStore.getState().sparks);
+            }
+          }}
         >
           Check Answer
         </Button>
@@ -89,7 +100,13 @@ export default function LessonChallenge({
 
         </div>
       )}
-
+      <div className="rounded-3xl bg-gradient-to-br from-cyan-500/10 to-purple-500/10">
+    <Button onClick={() =>
+      router.push("/worlds")
+    }>
+      Continue Journey 
+    </Button>
+    </div>
     </section>
   );
 }

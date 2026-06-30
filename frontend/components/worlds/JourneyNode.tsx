@@ -5,7 +5,8 @@ import Link from "next/link";
 type Props = {
   world: World;
 };
-
+const completed = completedLessons.length;
+const progress = (completed/6)*100;
 export default function JourneyNode({ world }: Props) {
   return (
     <div className="flex flex-col items-center">

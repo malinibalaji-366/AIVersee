@@ -1,28 +1,33 @@
+"use client";
 import { Sprout, Star, Compass, TrophyIcon } from "lucide-react";
+import { useProgressStore } from "@/lib/progressStore";
 export default function StatsGrid() {
+  const sparks = useProgressStore((state) => state.sparks);
+  const completedLessons = useProgressStore((state) => state.completedLessons);
+  const streak = useProgressStore((state) => state.streak);
   const stats = [
     {
       icon: Sprout,
       title: "Bloom",
-      value: "Level 1",
+      value: completedLessons.length === 0 ? "Seed":"Level 1",
       color: "text-green-400",
     },
     {
       icon: Compass,
       title: "Journey",
-      value: "0 Days",
+      value: `${streak} Day`,
         color: "text-cyan-400",
     },
     {
       icon: Star,
       title: "Sparks",
-      value: "0 XP",
+      value: `${sparks} XP`,
         color: "text-yellow-400",
     },
     {
       icon: TrophyIcon,
       title: "Rank",
-      value: "Explorer",
+      value: completedLessons.length >= 5 ? "AI Explorer" : "Beginner",
       color: "text-purple-400",
     },
   ];
