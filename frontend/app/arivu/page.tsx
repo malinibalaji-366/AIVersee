@@ -1,26 +1,16 @@
 import ChatHeader from "@/components/arivu/ChatHeader";
-import ChatInput from "@/components/arivu/ChatInput";
-import ChatWindow from "@/components/arivu/ChatWindow";
-import MessageBubble from "@/components/arivu/MessageBubble";
-import SuggestedPrompts from "@/components/arivu/SuggestedPrompts";
-import TypingIndicator from "@/components/arivu/TypingIndicator";
-
-
+import ChatClient from "@/components/arivu/ChatClient";
 
 export const metadata = {
   title: "Arivu | AIVerse",
 };
 export default function ArivuPage() {
   return (
-    <main className="flex min-h-screen bg-black text-white">
-      <section className="flex-1 overflow-y-auto px-8 py-8">
+    <main className="min-h-screen bg-black px-8 py-10 text-white">
+      <div className="mx-auto flex max-w-5xl flex-col gap-6">
         <ChatHeader />
-        <ChatInput />
-        <ChatWindow />
-        <MessageBubble />
-        <SuggestedPrompts />
-        <TypingIndicator />
-      </section>
+        <ChatClient />
+      </div>
     </main>
   );
 }

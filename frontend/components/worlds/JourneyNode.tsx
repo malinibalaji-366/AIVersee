@@ -1,13 +1,18 @@
+"use client";
 import Button from "@/components/ui/Button";
 import { Lock } from "lucide-react";
 import { World } from "./worlds";
+import { useProgressStore } from "@/lib/progressStore"
 import Link from "next/link";
 type Props = {
   world: World;
 };
-const completed = completedLessons.length;
-const progress = (completed/6)*100;
+
 export default function JourneyNode({ world }: Props) {
+  const completedLessons = useProgressStore((state) => state.completedLessons);
+  const totalLessons = 12;
+  const completed = completedLessons.length;
+  const progress = (completed / totalLessons ) * 100;
   return (
     <div className="flex flex-col items-center">
 
@@ -24,7 +29,7 @@ export default function JourneyNode({ world }: Props) {
           }
         `}
       >
-        {world.emoji}
+        {world.icon}
       </div>
 
       {/* Title */}
