@@ -1,5 +1,5 @@
 import Button from "@/components/ui/Button";
-import { Lock } from "lucide-react";
+import { ArrowRight, Lock } from "lucide-react";
 import { World } from "./worlds";
 
 type Props = {
@@ -44,7 +44,7 @@ export default function WorldCard({ world }: Props) {
       <div className="mt-8">
         {world.unlocked ? (
           <Button className="w-full">
-            Enter World →
+            Enter World <ArrowRight size={18} />
           </Button>
         ) : (
           <button

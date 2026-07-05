@@ -1,4 +1,5 @@
 import { Lesson } from "@/types/lesson";
+import { LightbulbIcon } from "lucide-react";
 export const lessons: {
     foundations: Lesson[];
 } = {
@@ -20,7 +21,7 @@ export const lessons: {
 
         {
           type: "tip",
-          title: "💡 Arivu Tip",
+          title: " Arivu Tip",
           body:
             "Imagine a variable as a labeled box. You can put something inside the box and later open it whenever you need it.",
         },
@@ -29,8 +30,7 @@ export const lessons: {
           type: "code",
           language: "python",
           code: `name = "Malini"
-
-print(name)`,
+                print(name)`,
         },
 
         {

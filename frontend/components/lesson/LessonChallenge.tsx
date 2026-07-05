@@ -9,7 +9,7 @@ type Props = {
   options: string[];
   answer?: string;
 };
-
+import { Brain, CheckCircle2, XCircle } from "lucide-react";
 export default function LessonChallenge({
   question,
   code,
@@ -28,11 +28,12 @@ export default function LessonChallenge({
   const alreadyCompleted = completedLessons.includes("variables");
   return (
     <section className="mb-10 rounded-3xl border border-yellow-500/20 bg-yellow-500/5 p-8">
-
+      <div className="flex items-center gap-2">
+        <Brain className="text-yellow-400" />
       <h2 className="text-2xl font-bold">
-        🧠 Mini Challenge
+        Mini Challenge
       </h2>
-
+    </div>
       <p className="mt-5">{question}</p>
         <pre className="mt-4 overflow-x-auto rounded-2xl bg-black p-4 text-green-400">
             <code>{code}</code>
@@ -88,8 +89,8 @@ export default function LessonChallenge({
       ) : (
         <div className="mt-6 rounded-2xl bg-white/5 p-5">
 
-          <h3 className="text-xl font-bold">
-            {correct ? "✅ Correct!" : "❌ Not Quite"}
+          <h3 className="flex items-center gap-2 text-xl font-bold">
+            {correct ? (<><CheckCircle2 className="text-green-400" size={24}/><span>Correct!</span></>) : (<><XCircle className="text-red-400" size={24} /><span>Not Quite</span></>)}
           </h3>
 
           <p className="mt-3 text-gray-300">

@@ -1,3 +1,5 @@
+import { Sprout } from "lucide-react";
+
 type Props = {
   title: string;
   duration: string;
@@ -10,8 +12,8 @@ export default function LessonHeader({
   return (
     <header className="mb-12">
 
-      <p className="text-cyan-400">
-        🌱 AI Foundations
+      <p className="flex gap-2 text-cyan-400">
+        <Sprout size={18}/>AI Foundations
       </p>
 
       <h1 className="mt-3 text-5xl font-black">

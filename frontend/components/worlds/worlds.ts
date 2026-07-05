@@ -1,21 +1,19 @@
-import { Color } from "framer-motion";
-import { Sprout, Bot, Brain, PaletteIcon, Cpu, MessageCircle} from "lucide-react";
 export type World = {
   id: number;
   title: string;
-  icon: any;
+  icon: string;
   description: string;
   lessons: number;
   progress: number;
   unlocked: boolean;
-  color: any;
+  color: string;
 };
 
 export const worlds: World[] = [
   {
     id: 1,
     title: "AI Foundations",
-    icon: Sprout,
+    icon: "Sprout",
     description: "Learn programming, logic, and AI basics.",
     lessons: 12,
     progress: 0,
@@ -25,7 +23,7 @@ export const worlds: World[] = [
   {
     id: 2,
     title: "Machine Learning",
-    icon: Bot,
+    icon: "Bot",
     description: "Train intelligent models using real datasets.",
     lessons: 15,
     progress: 0,
@@ -35,7 +33,7 @@ export const worlds: World[] = [
   {
     id: 3,
     title: "Deep Learning",
-    icon: Brain,
+    icon: "Brain",
     description: "Build powerful neural networks.",
     lessons: 18,
     progress: 0,
@@ -45,27 +43,27 @@ export const worlds: World[] = [
   {
     id: 4,
     title: "Generative AI",
-    icon: PaletteIcon,
+    icon: "PaletteIcon",
     description: "Create AI that writes, draws, and speaks.",
     lessons: 14,
     progress: 0,
     unlocked: false,
-    color: "text-brown-400",
+    color: "text-orange-400",
   },
   {
     id: 5,
     title: "Computer Vision",
-    icon: Cpu,
+    icon: "Cpu",
     description: "Teach computers to understand images.",
     lessons: 13,
     progress: 0,
     unlocked: false,
-    color: "text-white-400",
+    color: "text-gray-200",
   },
   {
     id: 6,
     title: "Natural Language Processing",
-    icon: MessageCircle,
+    icon: "MessageCircle",
     description: "Build chatbots and language models.",
     lessons: 16,
     progress: 0,

@@ -4,7 +4,7 @@ import ChatInput from "./ChatInput";
 import ChatWindow from "./ChatWindow";
 import SuggestedPrompts from "./SuggestedPrompts";
 import { ChatMessage } from "@/types/chat";
-import { pre } from "framer-motion/client";
+
 
 export default function ChatClient(){
     const [messages, setMessages] = useState<
@@ -35,7 +35,7 @@ export default function ChatClient(){
             {
                 method: "POST",
                 headers: {
-                    "Content-Type":"applicaion/json",
+                    "Content-Type":"applictaion/json",
                 },
                 body: JSON.stringify({
                     message,
@@ -52,7 +52,9 @@ export default function ChatClient(){
     }
     return(
         <>
-        <SuggestedPrompts />
+        <SuggestedPrompts
+  onPromptClick={(prompt) => sendMessage(prompt)}
+/>
         <ChatWindow messages={messages} />
         <ChatInput onSend={sendMessage} />
         </>

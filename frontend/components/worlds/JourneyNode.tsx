@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/components/ui/Button";
-import { Lock } from "lucide-react";
+import { Lock, Sprout, Bot, Brain, Cpu, PaletteIcon, MessageCircle, BookOpen, ArrowRight, } from "lucide-react";
 import { World } from "./worlds";
 import { useProgressStore } from "@/lib/progressStore"
 import Link from "next/link";
@@ -10,9 +10,16 @@ type Props = {
 
 export default function JourneyNode({ world }: Props) {
   const completedLessons = useProgressStore((state) => state.completedLessons);
-  const totalLessons = 12;
-  const completed = completedLessons.length;
-  const progress = (completed / totalLessons ) * 100;
+
+  const icons = {
+      Sprout: Sprout,
+      Bot: Bot,
+      Brain: Brain,
+      PaletteIcon: PaletteIcon,
+      Cpu: Cpu,
+      MessageCircle: MessageCircle,
+    };
+  const Icon = icons[world.icon as keyof typeof icons];
   return (
     <div className="flex flex-col items-center">
 
@@ -28,8 +35,10 @@ export default function JourneyNode({ world }: Props) {
               : "border-gray-700 bg-white/5 opacity-60"
           }
         `}
-      >
-        {world.icon}
+      ><Icon 
+        size={60} 
+        className={world.color} 
+        />
       </div>
 
       {/* Title */}
@@ -43,16 +52,16 @@ export default function JourneyNode({ world }: Props) {
       </p>
 
       {/* Lessons */}
-      <div className="mt-5 rounded-full border border-white/10 px-5 py-2 text-sm text-gray-300">
-        📚 {world.lessons} Lessons
+      <div className="flex mt-5 rounded-full border border-white/10 px-5 py-2 text-sm text-gray-300 gap-2">
+        <BookOpen size={18} />{world.lessons} Lessons
       </div>
 
       {/* Button */}
       <div className="mt-8">
         {world.unlocked ? (
             <Link href="/learn/foundations/variables">
-                <Button>
-                    Enter World →
+                <Button className="flex items-center gap-2">
+                    Enter World <ArrowRight size={18}/>
                 </Button>
             </Link>
         ) : (
