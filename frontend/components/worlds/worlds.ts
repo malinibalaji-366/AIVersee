@@ -5,7 +5,6 @@ export type World = {
   description: string;
   lessons: number;
   progress: number;
-  unlocked: boolean;
   color: string;
 };
 
@@ -17,7 +16,6 @@ export const worlds: World[] = [
     description: "Learn programming, logic, and AI basics.",
     lessons: 12,
     progress: 0,
-    unlocked: true,
     color:"text-green-400",
   },
   {
@@ -27,7 +25,6 @@ export const worlds: World[] = [
     description: "Train intelligent models using real datasets.",
     lessons: 15,
     progress: 0,
-    unlocked: false,
     color:"text-cyan-400",
   },
   {
@@ -37,7 +34,6 @@ export const worlds: World[] = [
     description: "Build powerful neural networks.",
     lessons: 18,
     progress: 0,
-    unlocked: false,
     color: "text-pink-400",
   },
   {
@@ -47,7 +43,6 @@ export const worlds: World[] = [
     description: "Create AI that writes, draws, and speaks.",
     lessons: 14,
     progress: 0,
-    unlocked: false,
     color: "text-orange-400",
   },
   {
@@ -57,7 +52,6 @@ export const worlds: World[] = [
     description: "Teach computers to understand images.",
     lessons: 13,
     progress: 0,
-    unlocked: false,
     color: "text-gray-200",
   },
   {
@@ -67,7 +61,6 @@ export const worlds: World[] = [
     description: "Build chatbots and language models.",
     lessons: 16,
     progress: 0,
-    unlocked: false,
     color: "text-blue-400"
   },
 ];

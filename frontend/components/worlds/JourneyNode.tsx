@@ -9,8 +9,9 @@ type Props = {
 };
 
 export default function JourneyNode({ world }: Props) {
-  const completedLessons = useProgressStore((state) => state.completedLessons);
-
+  const completeLesson = useProgressStore((state) => state.completedLessons);
+  const unlockedWorlds = useProgressStore((state) => state.unlockedWorlds);
+  const isUnlocked = unlockedWorlds.includes(world.id);
   const icons = {
       Sprout: Sprout,
       Bot: Bot,
@@ -30,7 +31,7 @@ export default function JourneyNode({ world }: Props) {
           rounded-full border-4 text-6xl
           transition-all duration-300
           ${
-            world.unlocked
+            isUnlocked
               ? "border-cyan-400 bg-cyan-500/10 shadow-[0_0_40px_rgba(34,211,238,0.35)]"
               : "border-gray-700 bg-white/5 opacity-60"
           }
@@ -58,7 +59,7 @@ export default function JourneyNode({ world }: Props) {
 
       {/* Button */}
       <div className="mt-8">
-        {world.unlocked ? (
+        {isUnlocked ? (
             <Link href="/learn/foundations/variables">
                 <Button className="flex items-center gap-2">
                     Enter World <ArrowRight size={18}/>

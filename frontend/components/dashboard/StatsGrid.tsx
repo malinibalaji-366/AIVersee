@@ -3,13 +3,13 @@ import { Sprout, Star, Compass, TrophyIcon } from "lucide-react";
 import { useProgressStore } from "@/lib/progressStore";
 export default function StatsGrid() {
   const sparks = useProgressStore((state) => state.sparks);
-  const completedLessons = useProgressStore((state) => state.completedLessons);
+  const completeLesson = useProgressStore((state) => state.completedLessons);
   const streak = useProgressStore((state) => state.streak);
   const stats = [
     {
       icon: Sprout,
       title: "Bloom",
-      value: completedLessons.length === 0 ? "Seed":"Level 1",
+      value: completeLesson.length === 0 ? "Seed":"Level 1",
       color: "text-green-400",
     },
     {
@@ -27,7 +27,7 @@ export default function StatsGrid() {
     {
       icon: TrophyIcon,
       title: "Rank",
-      value: completedLessons.length >= 5 ? "AI Explorer" : "Beginner",
+      value: completeLesson.length >= 5 ? "AI Explorer" : "Beginner",
       color: "text-purple-400",
     },
   ];

@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Button from "@/components/ui/Button";
+import LessonComplete from "./LessonComplete";
 import { useProgressStore } from "@/lib/progressStore"
 type Props = {
   question: string;
@@ -9,7 +10,8 @@ type Props = {
   options: string[];
   answer?: string;
 };
-import { Brain, CheckCircle2, XCircle } from "lucide-react";
+import AchievementToast from "../achievement/AchievementToast";
+import { Brain, XCircle } from "lucide-react";
 export default function LessonChallenge({
   question,
   code,
@@ -18,13 +20,11 @@ export default function LessonChallenge({
 }: Props) {
   const [selected, setSelected] = useState("");
   const [checked, setChecked] = useState(false);
+  const [showAchievement, setShowAchievement] = useState(false);
   const router =useRouter();
   const correct = selected === answer;
   const addSparks = useProgressStore((state) => state.addSparks);
-  
-  const completedLessons = useProgressStore(
-    (state) => state.completedLessons
-  );
+ const { completedLessons, completeLesson } = useProgressStore();
   const alreadyCompleted = completedLessons.includes("variables");
   return (
     <section className="mb-10 rounded-3xl border border-yellow-500/20 bg-yellow-500/5 p-8">
@@ -80,6 +80,11 @@ export default function LessonChallenge({
             setChecked(true);
             if (selected === answer && !alreadyCompleted)  {
                 addSparks(30);
+                completeLesson("variables");
+                setShowAchievement(true);
+                setTimeout(() => {
+                  setShowAchievement(false);
+                }, 3000);
                 console.log("Current sparks:", useProgressStore.getState().sparks);
             }
           }}
@@ -87,27 +92,36 @@ export default function LessonChallenge({
           Check Answer
         </Button>
       ) : (
-        <div className="mt-6 rounded-2xl bg-white/5 p-5">
+        <div className="mt-6">
+  {correct ? (
+    <LessonComplete
+      title="Variables"
+      sparks={30}
+      onContinue={() => {
+        // We'll add navigation in the next phase
+      }}
+    />
+  ) : (
+    <div className="rounded-2xl bg-white/5 p-5">
 
-          <h3 className="flex items-center gap-2 text-xl font-bold">
-            {correct ? (<><CheckCircle2 className="text-green-400" size={24}/><span>Correct!</span></>) : (<><XCircle className="text-red-400" size={24} /><span>Not Quite</span></>)}
-          </h3>
+      <h3 className="flex items-center gap-2 text-xl font-bold">
+        <XCircle
+          className="text-red-400"
+          size={24}
+        />
+        <span>Not Quite</span>
+      </h3>
 
-          <p className="mt-3 text-gray-300">
-            {correct
-              ? "Excellent! Variables remember information for later use."
-              : `The correct answer is "${answer}".`}
-          </p>
+      <p className="mt-3 text-gray-300">
+        The correct answer is "{answer}".
+      </p>
 
-        </div>
-      )}
-      <div className="rounded-3xl bg-gradient-to-br from-cyan-500/10 to-purple-500/10">
-    <Button onClick={() =>
-      router.push("/worlds")
-    }>
-      Continue Journey 
-    </Button>
     </div>
+  )}
+</div>
+      )}
+  {showAchievement && (<AchievementToast title="Variable Explorer"
+  xp={30}/>)}
     </section>
   );
 }
